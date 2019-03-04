@@ -1,0 +1,67 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="smaller lighter blue no-margin">编辑项目组</h3>
+        </div>
+
+        <div class="modal-body">
+            <form class="form-horizontal" id="saveForm" role="form" action="/admin/perject/update" method="post">
+                <input type="hidden" id="Id" name="Id" value="{{.Perject.Id}}"/>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">项目名称：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Perject" name="Perject" required lay-verify="required" placeholder="项目名称" class="col-xs-10 col-sm-5"
+                               value="{{.Perject.Perject}}"/>
+                    </div>
+                </div>
+
+                <div class="modal-footer" style="background-color: white">
+                    <button class="btn btn-sm btn-primary" type="button" onclick="return save();">
+                        <i class="ace-icon fa fa-check"></i>
+                        保存
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        关闭
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+<script type="text/javascript">
+
+    jQuery(function ($) {
+        $('#saveForm').validate({
+            errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+                Perject: {
+                    required: true,
+
+                }
+            },
+            highlight: function (e) {
+                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            },
+            success: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+            }
+        });
+    });
+    //保存，之前进行校验
+    function save() {
+        if ($('#saveForm').valid()) {
+            $.post("/admin/perject/update", $("#saveForm").serialize(),
+                    function (data) {
+                        window.location.reload();
+                    });
+        }
+
+    }
+</script>

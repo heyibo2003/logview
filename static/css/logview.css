@@ -1,0 +1,56 @@
+* {font-family: "微软雅黑";}
+pre {font-size:14px;}
+td {font-size:15px;}
+#start_time_hour,#start_time_minute,#start_time_second,#end_time_hour,#end_time_minute,#end_time_second {width:42px;}
+#line,#min,#keyword,#log_level {width:80px;}
+textarea {font-size:13px;font-family:"Arial";overflow-x:hidden}
+table {padding-top:10px;padding-left:5px;}
+#table1 td {padding-left:5px;}
+#table1 td {padding-right:15px;}
+#logo {padding-left:10px;padding-bottom:5px;border-bottom:1px silver dotted;width:100%;}
+input {margin-left:3px;margin-right:2px;}
+input[type="button"][id="confirm"] {
+    margin-left:0px;
+    margin-right:0px;
+    height:70px;
+    width:98px;
+    background:url(/static/img/button.png) no-repeat;
+    font-size:18px;
+    font-weight:bold;
+}
+input[type="radio"] {
+    margin-left:20px;
+    margin-right:0px;
+}
+#th1{padding-left:10px;padding-bottom:5px;border-bottom:1px silver dotted;}
+font {margin-left:5px;margin-right:2px;}
+		/*#table2 {border-bottom:1px dotted silver;}*/
+#text {margin-top:10px;}
+.logview_form fieldset {
+    background: #efe;
+    width:980px;
+}
+.logview_form legend {
+    color: #dfd;
+    background: #141;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+}
+.logview_form label {
+    width: 5em;
+    float: left;
+    text-align: right;
+    padding-top: 0.2em;
+    margin-right: 0.1em;
+    display :block;
+}
+.logview_form input {
+    margin-left: 0.5em;
+}
+.logview_form .submit {
+    margin-left: 4em;
+}
+.logview_form div {
+    margin: 0.5em 0;
+}
+#linkto{margin-left:30px;}

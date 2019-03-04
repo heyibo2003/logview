@@ -1,0 +1,162 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="smaller lighter blue no-margin">编辑应用</h3>
+        </div>
+
+        <div class="modal-body">
+            <form class="form-horizontal" id="saveForm" role="form" action="/admin/app/update" method="post">
+                <input type="hidden" id="Id" name="Id" value="{{.Environmentals.Id}}"/>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">日志名称：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Name" name="Name" required lay-verify="required" placeholder="日志名称" class="col-xs-10 col-sm-5"
+                               value="{{.Environmentals.Name}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">日志路径：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Path" name="Path" required lay-verify="required" placeholder="日志路径" class="col-xs-10 col-sm-5"
+                               value="{{.Environmentals.Path}}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">服务器IP：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Machine" name="Machine" required lay-verify="required" placeholder="服务器IP" class="col-xs-10 col-sm-5"
+                               value="{{.Environmentals.Machine}}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">服务器账号：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="User" name="User" required lay-verify="required" placeholder="服务器账号" class="col-xs-10 col-sm-5"
+                               value="{{.Environmentals.User}}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">服务器密码：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Passwd" name="Passwd" required lay-verify="required" placeholder="服务器密码" class="col-xs-10 col-sm-5"
+                               value="{{.Environmentals.Passwd}}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">服务器端口：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Hostport" name="Hostport" required lay-verify="required" placeholder="服务器端口" class="col-xs-10 col-sm-5"
+                               value="{{.Environmentals.Hostport}}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">部署环境：</label>
+                    <div class="col-sm-9">
+                        <select class="col-xs-10 col-sm-5" name="EnvId" id="EnvId" style="width: 175px;">
+                            this.Data["tEnvId"] ={{.Environmentals.EnvId}}
+                        {{range.EList}}
+                            <option value="{{.Id}}" {{if   compare   .Id  $.tEnvId}} selected="selected" {{end}}>{{.Envname}}</option>
+                        {{end}}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">应用名称：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Domain" name="Domain" required lay-verify="required" placeholder="应用名称" class="col-xs-10 col-sm-5"
+                               value="{{.Environmentals.Domain}}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">项目组：</label>
+                    <div class="col-sm-9">
+                        <select class="col-xs-10 col-sm-5" name="PerjectId" id="PerjectId" style="width: 175px;">
+                            this.Data["tPerjectId"] ={{.Environmentals.PerjectId}}
+                        {{range.PList}}
+                                <option value="{{.Id}}" {{if compare .Id $.tPerjectId}} selected="selected" {{end}}>{{.Perject}}</option>
+                        {{end}}
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer" style="background-color: white">
+                    <button class="btn btn-sm btn-primary" type="button" onclick="return save();">
+                        <i class="ace-icon fa fa-check"></i>
+                        保存
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        关闭
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+<script type="text/javascript">
+
+    jQuery(function ($) {
+        $('#saveForm').validate({
+            errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+                Name: {
+                    required: true,
+                },
+                Path: {
+                    required: true,
+                },
+                Machine: {
+                    required: true,
+                },
+                User: {
+                    required: true,
+                },
+                Passwd: {
+                    required: true,
+                },
+                Hostport: {
+                    required: true,
+                },
+                EnvId: {
+                    required: true,
+                },
+                Domain: {
+                    required: true,
+                },
+                PerjectId: {
+                    required: true,
+                },
+            },
+            highlight: function (e) {
+                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            },
+            success: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+            }
+        });
+    });
+    //保存，之前进行校验
+    function save() {
+        if ($('#saveForm').valid()) {
+            $.post("/admin/app/update", $("#saveForm").serialize(),
+                    function (data) {
+                        window.location.reload();
+                    });
+        }
+
+    }
+</script>

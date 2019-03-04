@@ -1,0 +1,233 @@
+<html>
+<head>
+</head>
+<body onunload="onclose()">
+<link href="/static/css/logview.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/static/css/ace.min.css" />
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+<script type=text/javascript src="/static/js/jquery-2.1.4.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/ace-extra.min.js"></script>
+<script src="/static/js/ace-elements.min.js"></script>
+<script src="/static/js/ace.min.js"></script>
+<script src="/static/js/bootbox.js"></script>
+<div id="logo"><img src="/static/img/restart.jpg" alt="logo" style="width: 100px;height: 100px"/>
+    <div class="navbar-buttons navbar-header pull-right" role="navigation" style="height:50px;background-color:transparent;">
+        <ul class="nav ace-nav">
+            <li class="light-blue dropdown-modal" style="background-color:transparent;">
+                <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="height:20px;background-color:transparent;">
+                    <img class="nav-user-photo" src="/static/images/avatars/user.jpg" alt="Jason's Photo" style="border: 1px dotted #c0a830;-webkit-border-radius: 50%;border-radius: 50%;border: 1px solid #c0a830;"/>
+                    <span class="user-info" id="user-info" style="color: #0e0e0e"></span>
+                    <i class="ace-icon fa fa-caret-down" style="color: #c0a830"></i>
+                </a>
+                <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                    <li>
+                        <a onclick="logout()">
+                            <i class="ace-icon fa fa-power-off"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div style="float:right;width:160px;">
+        <a href="/" style="display:inline-block;text-decoration: underline;line-height: 70px;color:#c0a830">[ 查看日志 ] </a>
+        <a href="/admin/user/list" style="display:inline-block;text-decoration: underline;line-height: 70px;color:#c0a830;margin-left:20px;">[ 后台] </a>
+    </div>
+</div>
+<form id="form1" accept-charset="UTF-8" action="/" data-remote="true" method="get">
+    <table>
+        <tr>
+            <td>
+                <table id="table1" width="1320px">
+                    <tr style="height: 100px">
+                        <td width="900px" style="font-size: 20px">&nbsp;&nbsp;选择:
+                            <select  name="PerjectId" id="PerjectId"  onchange="getPerjectList();">
+                                <option value="0" selected="selected">选择项目</option>
+                            {{range .PList}}
+                                <option value="{{.Id}}">{{.Perject}}</option>
+                            {{end}}
+                            </select>
+                            <select  name="EnvId" id="EnvId" onchange="getEnvList();">
+                                <option value="0" selected="selected">选择环境</option>
+                            </select>
+                            <select name="domain" id="domain"  onchange="getMachineList();">
+                                <option value="0">选择应用</option>
+                            </select>
+                            <select name="machine" id="machine"  >
+                                <option value="0">选择服务器</option>
+                            </select>
+
+                        </td>
+                        <td id="checkbox" style="font-size: 20px; ">服务操作:
+                            <font style="background:#00ffff">Restart</font><input type="checkbox" id="restart" name="restart" value="restart" />
+                            <font style="background:#00ff00"> Stop</font><input type="checkbox" id="stop"  name="stop" value="stop"  />
+                            <font style="background:#ffa000"> Start</font><input type="checkbox" id="start"  name="start" value="start"/>
+                            <font style="background:#ffa000"> check</font><input type="checkbox" id="check"  name="check" value="check"/>
+                            <input type="hidden" value="" id="ExecName"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td rowspan="2"><input type="button" id="confirm" value="" onclick="LogsGo();"/></td>
+        </tr>
+    </table>
+</form>
+<div id="text">
+    <div  rows=31 cols=235 style="margin:0 auto;width: 98%;border:1px solid #ccc;height:500px;overflow-y: auto">
+        <ul id="logs_content"></ul>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $('#checkbox').find('input[type=checkbox]').bind('click', function(){
+            $('#checkbox').find('input[type=checkbox]').not(this).attr("checked", false);
+            $('#ExecName').val($(this).val())
+        });
+
+        var ws = new WebSocket('ws://' + window.location.host + '/ws');
+
+        ws.onmessage = function(e) {
+            console.log(JSON.parse(event.data).message)
+            $('<li>').text(JSON.parse(event.data).message).appendTo($ul);
+            //debugger
+            // $('#logs_content').html(JSON.parse(event.data).message)
+        };
+        var $ul = $('#logs_content');
+    });
+    $.post("/getusername", function (data) {
+        $("#user-info").append(data.username);
+    });
+    function logout() {
+        $.post("/logout",function(data){
+            window.location.reload();
+        });
+    }
+    function getPerjectList() {
+        var PerjectId = document.getElementById("PerjectId").selectedIndex;
+        if (PerjectId == 0) {
+            $("#EnvId option").remove();$("select[id='EnvId']").append("<option value=\"\">选择环境</option>");
+            $("#domain option").remove();$("select[id='domain']").append("<option value=\"\">选择应用</option>");
+            $("#machine option").remove();$("select[id='machine']").append("<option value=\"\">选择服务器</option>");
+
+        }
+        else {
+            $.post("/getEnv",{ PerjectId:$("select[id='PerjectId'] option:selected").val() } ,function(data){
+                $("#EnvId").html("");
+                $("#EnvId").append("<option value=''>选择环境</option>");
+                if (typeof data !=='undefined' && data != null) {
+                    $.each(data, function (idx, item) {
+                        $("#EnvId").append("<option value=" + item.Id + ">" + item.Envname + "</option>");
+                    });
+                    $("#EnvId").prop('selectedIndex', 0);
+                } else {
+                    $("#EnvId").val('0');
+                }
+            });
+        }
+    }
+    function getEnvList() {
+        var EnvId = document.getElementById("EnvId").selectedIndex;
+        if (EnvId == 0) {
+            $("#domain option").remove();$("select[id='domain']").append("<option value=\"\">选择应用</option>");
+            $("#machine option").remove();$("select[id='machine']").append("<option value=\"\">选择服务器</option>");
+        }
+        else {
+            $.post("/getApplications",{
+                PerjectId:$("select[id='PerjectId'] option:selected").val(),
+                EnvId:$("select[id='EnvId'] option:selected").val() } ,function(data){
+                $("#domain").html("");
+                $("#domain").append("<option value=''>选择应用</option>");
+                if (typeof data !=='undefined' && data != null) {
+                    $.each(data, function (idx, item) {
+                        $("#domain").append("<option value=" + item.Domain + ">" + item.Domain + "</option>");
+                    });
+                    $("#domain").prop('selectedIndex', 0);
+                } else {
+                    $("#EnvId").val('0');
+                }
+            });
+        }
+    }
+    function getMachineList() {
+        var domain = document.getElementById("domain").selectedIndex;
+        if (domain == 0) {
+            $("#machine option").remove();$("select[id='machine']").append("<option value=\"\">选择服务器</option>");
+        }
+        else {
+            $.post("getHosts",{
+                PerjectId:$("select[id='PerjectId'] option:selected").val(),
+                EnvId:$("select[id='EnvId'] option:selected").val(),
+                domain:$("select[id='domain'] option:selected").val()} ,function(data){
+                $("#machine").html("");
+                $("#machine").append("<option value=''>选择服务器</option>");
+                if (typeof data !=='undefined' && data != null) {
+                    $.each(data, function (idx, item) {
+                        $("#machine").append("<option value=" + item.Machine + ">" + item.Machine + "</option>");
+                    });
+                    $("#machine").prop('selectedIndex', 0);
+                } else {
+                    $("#domain").val('0');
+                }
+            });
+        }
+    };
+    function LogsGo() {
+        var PerjectId = document.getElementById("PerjectId").selectedIndex;
+        if (PerjectId == 0 ) {
+            alert('请选择项目！');
+            return;
+        }
+
+        var EnvId = document.getElementById("EnvId").selectedIndex;
+        if (EnvId == 0 ) {
+            alert('请选择环境！');
+            return;
+        }
+        var Domain = document.getElementById("domain").value;
+        if (Domain == 0 ) {
+            alert('请选择应用！');
+            return;
+        }
+        var Machine = document.getElementById("machine").value;;
+        if ( Machine == 0) {
+            alert('请选择服务器！');
+            return;
+        }
+        var ExecName = document.getElementById("ExecName").value;
+        if (ExecName == ""){
+            alert('请选择操作类型！');
+            return;
+        }
+        var form1 = document.getElementById("form1");
+        //form1.submit();
+        var data = {
+            'PerjectId':PerjectId,
+            'EnvId': EnvId,
+            'Domain': Domain,
+            'Machine': Machine,
+            'ExecName':ExecName,
+        };
+        $('#logs_content').html('')
+        jQuery.ajax({
+            url: 'getExecLogs',
+            type: 'post',
+            data: data,
+            success: function(data){
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+    }
+    function onclose() {
+        var ws = new WebSocket('ws://' + window.location.host + '/ws');
+        ws.onclose = function (ev) {
+        };
+    }
+</script>
+</body>
+</html>

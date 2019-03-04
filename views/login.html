@@ -1,0 +1,116 @@
+<html>
+<head>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/ace-extra.min.js"></script>
+    <script src="/static/js/ace-elements.min.js"></script>
+    <script src="/static/js/ace.min.js"></script>
+    <script src="/static/js/bootbox.js"></script>
+    <!-- 增加js 校验 -->
+    <script src="/static/js/jquery.validate.min.js"></script>
+    <script src="/static/js/validate_messages_zh.min.js"></script>
+   <title>安吉加加日志工具</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+	<link href="/static/css/theme.css" rel="stylesheet" />
+	<link href="/static/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/ace.min.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+</head>
+<body style="background: #f0f9fc;">
+<div id="wrap">
+    <div class="login_bg">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="row-fluid">
+				<div class="container-narrow">
+					<div class="login_logo">
+						<img src="/static/img/logo_login.png">
+						<p>日志工具</p>
+					</div>
+					<div class="clearfix" style="padding:25px;">
+                        <form  id="loginForm" class="form-horizontal" role="form" action="/login/post" method="post">
+							<div class="control-group">
+								<div class="controls">
+									<div class="input-prepend">
+                                       <span class="add-on"><img src="/static/img/user.png"></span>
+										<input name="Username" type="text" id="Username" placeholder="登录名" value=""/>
+                                    </div>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<div class="input-prepend">
+                                       <span class="add-on"><img src="/static/img/password.png"></span>
+                                           <input name="Password" type="password" id="Password" placeholder="密码" value=""/>
+                                    </div>
+								</div>
+							</div>
+							 <div class="control-group">
+								<div class="controls clearfix">
+                                    <button class="btn pull-right btn-primary" type="button" onclick="return save();">
+                                        <i class="ace-icon fa fa-check"></i>
+                                        登陆
+                                    </button>
+								</div>
+							</div>
+		      			</form>
+					</div>
+				</div>
+                </div><!--/row-fluid-->
+            </div><!--/span10-->
+        </div><!--/row-fluid-->
+    </div><!--/.fluid-container-->
+</div><!-- wrap ends-->
+<script type="text/javascript">
+
+    jQuery(function ($) {
+        $('#loginForm').validate({
+            errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+                Username: {
+                    required: true,
+                    rangelength:[5,10],
+                },
+                Password: {
+                    required: true,
+                    rangelength:[6,20],
+                }
+            },
+            highlight: function (e) {
+                $(e).closest('.control-group').removeClass('has-info').addClass('has-error ');
+            },
+            success: function (e) {
+                $(e).closest('.control-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+            }
+        });
+    });
+    //保存，之前进行校验
+    function save() {
+        if ($('#loginForm').valid()) {
+            $.post("/login/post", $("#loginForm").serialize(),
+                    function (data) {
+                        var islogin = data.islogin
+                        if (islogin == 1) {
+                            var url = "/admin/user/list";
+                            window.location.href = url;
+                        }else if (islogin == 2) {
+                            var url = "/";
+                            window.location.href = url;
+                        }else {
+                            window.location.reload();
+                        }
+                        console.log(data)
+                    });
+        }
+
+    }
+</script>
+  </body>
+</html>

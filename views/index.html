@@ -1,0 +1,135 @@
+<html>
+<head>
+</head>
+<body onunload="onclose()">
+<link href="/static/css/logview.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/static/css/ace.min.css" />
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+<script type=text/javascript src="/static/js/jquery-2.1.4.min.js"></script>
+<script type=text/javascript src="/static/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/js/logview.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/ace-extra.min.js"></script>
+<script src="/static/js/ace-elements.min.js"></script>
+<script src="/static/js/ace.min.js"></script>
+<script src="/static/js/bootbox.js"></script>
+<div id="logo" style="overflow:hidden"><img src="/static/img/lv_logo.png" alt="logo" style="float:left;"/>
+    <div class="navbar-buttons navbar-header pull-right" role="navigation" style="height:50px;background-color:transparent;">
+        <ul class="nav ace-nav">
+            <li class="light-blue dropdown-modal" style="background-color:transparent;">
+                <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="height:20px;background-color:transparent;">
+                    <img class="nav-user-photo" src="/static/images/avatars/user.jpg" alt="Jason's Photo" style="border: 1px dotted #c0a830;-webkit-border-radius: 50%;border-radius: 50%;border: 1px solid #c0a830;"/>
+                    <span class="user-info" id="user-info" style="color: #0e0e0e"></span>
+                    <i class="ace-icon fa fa-caret-down" style="color: #c0a830"></i>
+                </a>
+                <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                    <li>
+                        <a onclick="logout()">
+                            <i class="ace-icon fa fa-power-off"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div style="float:right;width:210px;">
+        <a href="/inspection" style="display:inline-block;text-decoration: underline;line-height: 70px;color:#c0a830">[ 巡检 ]&nbsp&nbsp&nbsp</a>
+        <a href="/list" style="display:inline-block;text-decoration: underline;line-height: 70px;color:#c0a830">[ 服务操作 ] </a>
+        <a href="/admin/user/list" style="display:inline-block;text-decoration: underline;line-height: 70px;color:#c0a830;margin-left:20px;">[ 后台] </a>
+    </div>
+</div >
+<div style="height: auto">
+<form id="form1" accept-charset="UTF-8" action="/" data-remote="true" method="get">
+<table >
+   <tr>
+    <td>
+      <table id="table1" width="1320px">
+       <tr style="height: 70px">
+  	<td width="900px">&nbsp;选择:
+		<select  name="EnvId" id="EnvId"  onchange="getEnvList();">
+            <option value="0" selected="selected">选择环境</option>
+		{{range .EList}}
+            <option value="{{.Id}}">{{.Envname}}</option>
+		{{end}}
+  		</select>
+		<select name="domain" id="domain" onchange="getMachineList();">
+			<option value="0">选择业务</option>
+  		</select>
+		<select name="machine" id="machine" onchange="getLogsNameList();">
+			<option value="0">选择服务器</option>
+  		</select>
+               <select name="LogsName" id="LogsName">
+			<option value="0">选择日志</option>
+  		</select>
+                选择日期:<INPUT TYPE="text"   class="Wdate" id="d122"  NAME="LogsTime" style="height:30px; "  value="{{.LogsTime}}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'%y-%M-01',maxDate:'%y-%M-%ld'})" check="Require">
+	</td>
+  	<td id="checkbox">LOG级别:
+		<font style="background:#00ffff">DEBUG</font><input type="checkbox" id="debug" name="debug" value="debug" />
+		<font style="background:#00ff00"> INFO</font><input type="checkbox" id="info"  name="info" value="info"  />
+		<font style="background:#ffa000"> WARN</font><input type="checkbox" id="warn"  name="warn" value="warn"/>
+		<font style="background:#ff0000">ERROR</font><input type="checkbox" id="error" name="error" value="error"/>
+        <input type="hidden" value="" id="loglevel"/>
+        </td>
+       </tr>
+      </table>
+    </td>
+    <td rowspan="2"><input type="button" id="confirm" value="" onclick="LogsGo();"/></td>
+   </tr>
+   <tr>
+    <td>
+     <table id="table2" width="1000px">
+      <tr style="height: 50px">
+       <td>&nbsp;&nbsp;查看模式:</td>
+       <td id="td1"><input name="view_type" type="radio" value="1"  onclick="changeRadio();"/> 最后<input id="line" name="line" value="" style="width:60px" onclick="focus_line();"/>行</td>
+       <td id="td2" style="padding-left:30px;"><input name="view_type" type="radio" value="2"  onclick="changeRadio();"/> 最后<input id="min" name="min" value="" style="width:60px" onclick="focus_min();"/>分钟</td>
+       <td id="td3" style="padding-left:30px;"><input name="view_type" type="radio" value="3" onclick="changeRadio();"/> 从 <input id="BeginTime" type="text" name="BeginTime"  class="txt" onfocus="WdatePicker({dateFmt:'HH:mm:ss',minDate:'08:00:00',quickSel:['%H-00-00','%H-15-00','%H-30-00','%H-45-00']})" style="width:60px;height: 30px"/>
+           到<input id="EndTime" type="text" name="EndTime" class="txt" onfocus="WdatePicker({dateFmt:'HH:mm:ss',minDate:'08:00:00',quickSel:['%H-00-00','%H-15-00','%H-30-00','%H-45-00']})" style="width:60px;height: 30px"/>时间
+       </td>
+      </tr>
+    </table>
+   </td>
+  </tr>
+</table>
+</form>
+</div>
+<div id="text">
+    <div  rows=31 cols=235 style="margin:0 auto;width: 98%;border:1px solid #ccc;height:500px;overflow-y: auto">
+        <ul id="logs_content"></ul>
+    </div>
+</div>
+<style type="text/css">ul,li {list-style:none}</style>
+<script>
+    $(function(){
+        $('#checkbox').find('input[type=checkbox]').bind('click', function(){
+            $('#checkbox').find('input[type=checkbox]').not(this).attr("checked", false);
+            $('#loglevel').val($(this).val())
+        });
+
+        var ws = new WebSocket('ws://' + window.location.host + '/ws');
+
+        ws.onmessage = function(e) {
+            // console.log(JSON.parse(event.data).message)
+            $('<li>').text(JSON.parse(event.data).message).appendTo($ul);
+            //debugger
+            // $('#logs_content').html(JSON.parse(event.data).message)
+        };
+        var $ul = $('#logs_content');
+    });
+    $.post("/getusername", function (data) {
+        $("#user-info").append(data.username);
+    });
+    function logout() {
+        $.post("/logout",function(data){
+            window.location.reload();
+        });
+    }
+    function onclose() {
+        var ws = new WebSocket('ws://' + window.location.host + '/ws');
+        ws.onclose = function (ev) {
+        };
+    }
+</script>
+</body>
+</html>
