@@ -1,0 +1,132 @@
+<html>
+<head>
+</head>
+<body onunload="onclose()">
+<link href="/static/css/logview.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/static/css/ace.min.css" />
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+<script type=text/javascript src="/static/js/jquery-2.1.4.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/ace-extra.min.js"></script>
+<script src="/static/js/ace-elements.min.js"></script>
+<script src="/static/js/ace.min.js"></script>
+<script src="/static/js/bootbox.js"></script>
+<div id="logo"><img src="/static/img/health.jpg" alt="logo" style="width: 100px;height: 100px"/>
+    <div class="navbar-buttons navbar-header pull-right" role="navigation" style="height:50px;background-color:transparent;">
+        <ul class="nav ace-nav">
+            <li class="light-blue dropdown-modal" style="background-color:transparent;">
+                <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="height:20px;background-color:transparent;">
+                    <img class="nav-user-photo" src="/static/images/avatars/user.jpg" alt="Jason's Photo" style="border: 1px dotted #c0a830;-webkit-border-radius: 50%;border-radius: 50%;border: 1px solid #c0a830;"/>
+                    <span class="user-info" id="user-info" style="color: #0e0e0e"></span>
+                    <i class="ace-icon fa fa-caret-down" style="color: #c0a830"></i>
+                </a>
+                <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                    <li>
+                        <a onclick="logout()">
+                            <i class="ace-icon fa fa-power-off"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div style="float:right;width:210px;text-align: right;">
+        <a href="/list" style="display:inline-block;text-decoration: underline;line-height: 70px;color:#c0a830;text-align: left;">[ 服务操作 ]</a>
+        <a href="/" style="display:inline-block;text-decoration: underline;line-height: 70px;color:#c0a830;text-align: center;">[ 查看日志 ] </a>
+        <a href="/admin/user/list" style="display:inline-block;text-decoration: underline;line-height: 70px;color:#c0a830;text-align: right;">[ 后台] </a>
+    </div>
+</div>
+<form id="form1" accept-charset="UTF-8" action="/" data-remote="true" method="get">
+    <table  frame=void>
+        <tr>
+            <td>
+                <table id="table1" width="1320px">
+                    <tr style="height: 100px">
+                        <td  width="20px"></td>
+                        <td width="350px" style="font-size: 15px;;text-align: left;">选择项目:
+                            <select  name="PerjectId" id="PerjectId"  style="width: 200px">
+                                <option value="0" selected="selected">选择项目</option>
+                            {{range .PList}}
+                                <<option value="{{.Id}}" {{if .Perject}} selected="selected" {{end}}>{{.Perject}}</option>
+                            {{end}}
+                            </select>
+                        </td>
+                        <td  width="350px" style="font-size: 15px;text-align: left;">选择环境：
+                            <select  name="EnvId" id="EnvId" style="width: 200px">
+                                <option value="0" selected="selected">选择环境</option>
+                                {{range  .EList}}
+                                    <option value="{{.Id}}" {{if .Envname}} selected="selected" {{end}}>{{.Envname}}</option>
+                                {{end}}
+                            </select>
+
+                        </td>
+                        <td width="600px"></td>
+                    </tr>
+                </table>
+            </td>
+            <td rowspan="2"><input type="button" id="confirm" value="" onclick="LogsGo();"/></td>
+        </tr>
+    </table>
+</form>
+<div id="text">
+    <div  rows=31 cols=235 style="margin:0 auto;width: 98%;border:1px solid #ccc;height:500px;overflow-y: auto">
+        <ul id="logs_content"></ul>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        var ws = new WebSocket('ws://' + window.location.host + '/ws');
+        ws.onmessage = function(e) {
+            console.log(JSON.parse(event.data).message)
+            $('<li style="color: #2E8965">').text(JSON.parse(event.data).message).appendTo($ul);
+        };
+        var $ul = $('#logs_content');
+    });
+    $.post("/getusername", function (data) {
+        $("#user-info").append(data.username);
+    });
+    function logout() {
+        $.post("/logout",function(data){
+            window.location.reload();
+        });
+    }
+    function LogsGo() {
+        var PerjectId = document.getElementById("PerjectId").selectedIndex;
+        if (PerjectId == 0 ) {
+            alert('请选择项目！');
+            return;
+        }
+        var EnvId = document.getElementById("EnvId").selectedIndex;
+        if (EnvId == 0 ) {
+            alert('请选择环境！');
+            return;
+        }
+        var form1 = document.getElementById("form1");
+        //form1.submit();
+        var data = {
+            'PerjectId':PerjectId,
+            'EnvId': EnvId,
+        };
+        $('#logs_content').html('')
+        jQuery.ajax({
+            url: 'getHealth',
+            type: 'post',
+            data: data,
+            success: function(data){
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+    }
+    function onclose() {
+        var ws = new WebSocket('ws://' + window.location.host + '/ws');
+        ws.onclose = function (ev) {
+        };
+    }
+</script>
+</body>
+</html>

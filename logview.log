@@ -1,0 +1,279 @@
+2019/03/21 09:29:37.168 [I] [asm_amd64.s:2337] http server Running on http://:80
+2019/03/21 09:29:37.171 [C] [asm_amd64.s:2337] ListenAndServe:  listen tcp :80: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2019/03/21 09:29:50.355 [I] [asm_amd64.s:2337] http server Running on http://:80
+2019/03/21 09:29:57.528 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:29:57] "GET /login HTTP/1.1 200 0" 0.009973  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:29:58.473 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:29:58] "GET /favicon.ico HTTP/1.1 404 0" 0.000996 http://localhost/login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:07.458 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:07] "POST /login/post HTTP/1.1 200 0" 0.006990 http://localhost/login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:07.501 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:07] "GET / HTTP/1.1 200 0" 0.032910 http://localhost/login Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:07.645 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:07] "POST /getusername HTTP/1.1 200 0" 0.000000 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:11.213 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:11] "GET /health HTTP/1.1 200 0" 0.025931 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:11.225 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:30:11.241 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:30:11.241 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:30:11.242 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:30:11.242 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:30:11.242 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:30:11.242 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:30:11.242 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:30:11.242 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:30:11.242 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:30:11.242 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:30:11.242 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:30:11.242 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:30:11.242 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:30:11.242 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:30:11.263 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:11] "GET /static/img/health.jpg HTTP/1.1 304 0" 0.008011 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:11.315 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:11] "POST /getusername HTTP/1.1 200 0" 0.000000 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:15.603 [I] [Inspection.go:162] dataList-name : [0xc042079860 0xc042079930]
+2019/03/21 09:30:16.325 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:15] "POST /getHealth HTTP/1.1 200 0" 0.732022 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:47.668 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:47] "GET / HTTP/1.1 200 0" 0.012003 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:47.676 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:30:47.707 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:30:47.707 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:30:47.707 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:30:47.806 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:47] "POST /getusername HTTP/1.1 200 0" 0.000000 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:50.944 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:50] "GET /health HTTP/1.1 200 0" 0.016985 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:50.954 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:30:50.977 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:30:50.977 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:30:50.977 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:30:51.046 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:51] "POST /getusername HTTP/1.1 200 0" 0.000000 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:56.222 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:56] "GET / HTTP/1.1 200 0" 0.010969 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:56.230 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:30:56.257 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:30:56.258 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:30:56.258 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:30:56.258 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:30:56.340 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:56] "POST /getusername HTTP/1.1 200 0" 0.000000 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:59.583 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:59] "GET /health HTTP/1.1 200 0" 0.009974 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:30:59.596 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:30:59.598 [E] [asm_amd64.s:509] error: read tcp [::1]:80->[::1]:63655: wsarecv: An established connection was aborted by the software in your host machine.
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:30:59.627 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:30:59.627 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:30:59.627 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:30:59.630 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:30:59.631 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:30:59.631 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:30:59.697 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:30:59] "POST /getusername HTTP/1.1 200 0" 0.000000 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:00.796 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:00] "GET /list HTTP/1.1 200 0" 0.073804 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:00.804 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:31:00.831 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:31:00.831 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:31:00.831 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:31:00.831 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:31:00.831 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:31:00.832 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:31:00.832 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:31:00.832 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:31:00.832 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:31:00.832 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:31:00.832 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:31:00.832 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:31:00.832 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:31:00.832 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:31:00.832 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:00] "GET /static/img/restart.jpg HTTP/1.1 200 0" 0.007978 http://localhost/list Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:00.897 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:00] "POST /getusername HTTP/1.1 200 0" 0.000000 http://localhost/list Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:02.144 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:02] "GET / HTTP/1.1 200 0" 0.008972 http://localhost/list Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:02.152 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:31:02.184 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:31:02.184 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:31:02.184 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:31:02.185 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:31:02.185 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:31:02.185 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:31:02.185 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:31:02.185 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:31:02.185 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:31:02.185 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:31:02.185 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:31:02.185 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:31:02.185 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:31:02.185 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:31:02.239 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:02] "POST /getusername HTTP/1.1 200 0" 0.000998 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:03.307 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:03] "GET /health HTTP/1.1 200 0" 0.011992 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:03.316 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:31:03.345 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:31:03.345 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:31:03.345 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:31:03.345 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:31:03.345 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:31:03.345 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:31:03.345 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:31:03.345 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:31:03.345 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:31:03.346 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:31:03.346 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:31:03.346 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:31:03.346 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:31:03.346 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:31:03.407 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:03] "POST /getusername HTTP/1.1 200 0" 0.004986 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:05.030 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:05] "GET / HTTP/1.1 200 0" 0.008977 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:05.041 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:31:05.057 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:31:05.057 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:31:05.057 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:31:05.123 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:05] "POST /getusername HTTP/1.1 200 0" 0.000000 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:07.433 [I] [Index.go:37] dataList-domain : [0xc04209a8f0 0xc04209a9a0 0xc04209aa50 0xc04209ab00 0xc04209abb0 0xc04209ac60 0xc04209ad10 0xc04209adc0 0xc04209ae70 0xc04209af20 0xc04209afd0 0xc04209b080 0xc04209b130 0xc04209b1e0]
+2019/03/21 09:31:07.433 [I] [asm_amd64.s:509] dataList-damain : [0xc04209a8f0 0xc04209a9a0 0xc04209aa50 0xc04209ab00 0xc04209abb0 0xc04209ac60 0xc04209ad10 0xc04209adc0 0xc04209ae70 0xc04209af20 0xc04209afd0 0xc04209b080 0xc04209b130 0xc04209b1e0]
+2019/03/21 09:31:07.433 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:07] "POST /getDomains HTTP/1.1 200 0" 0.074801 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:09.025 [I] [Index.go:50] dataList-machine : [0xc0425ba000]
+2019/03/21 09:31:09.025 [I] [asm_amd64.s:509] dataList-machines : [0xc0425ba000]
+2019/03/21 09:31:09.025 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:09] "POST /getMachines HTTP/1.1 200 0" 0.005983 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:10.292 [I] [Index.go:64] dataList-name : [0xc0425ba210]
+2019/03/21 09:31:10.292 [I] [asm_amd64.s:509] dataList-logsname : [0xc0425ba210]
+2019/03/21 09:31:10.292 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:10] "POST /getLogsName HTTP/1.1 200 0" 0.002994 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:20.391 [I] [Index.go:141] dataList-all : [0xc0425ba420]
+2019/03/21 09:31:20.684 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:20] "POST /getLogs HTTP/1.1 200 0" 0.296207 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:31:41.248 [I] [Index.go:141] dataList-all : [0xc04209a790]
+2019/03/21 09:31:41.775 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:31:41] "POST /getLogs HTTP/1.1 200 0" 0.529582 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:32:34.280 [I] [Index.go:141] dataList-all : [0xc04261a2c0]
+2019/03/21 09:32:34.522 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:32:34] "POST /getLogs HTTP/1.1 200 0" 0.244345 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:32:44.729 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:32:44] "GET /health HTTP/1.1 200 0" 0.009001 http://localhost/ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:32:44.740 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:32:44.761 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:32:44.761 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:32:44.761 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:32:44.761 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:32:44.762 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:32:44.762 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:32:44.762 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:32:44.762 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:32:44.762 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:32:44.762 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:32:44.762 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:32:44.762 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:32:44.762 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:32:44.762 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:32:44.866 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:32:44] "POST /getusername HTTP/1.1 200 0" 0.000990 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:32:50.319 [I] [Inspection.go:162] dataList-name : [0xc0421905b0 0xc042190680]
+2019/03/21 09:32:50.930 [D] [server.go:2619] ::1 - - [21/Mar/2019 09:32:50] "POST /getHealth HTTP/1.1 200 0" 0.614406 http://localhost/health Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+
+2019/03/21 09:32:58.106 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:32:58.109 [E] [asm_amd64.s:509] error: websocket: close 1001 (going away)
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:32:58.117 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:32:58.117 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:32:58.117 [server.go:2846] [HTTP] http: response.Write on hijacked connection
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] the request url is  /ws
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] Handler crashed with error can't find templatefile in the path:views/websocketcontroller/wshandler.tpl
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:509
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] C:/Go/src/runtime/panic.go:491
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/template.go:73
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:263
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:214
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/controller.go:194
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] D:/workspace/src/LogView/vendor/github.com/astaxie/beego/router.go:859
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:2619
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] C:/Go/src/net/http/server.go:1801
+2019/03/21 09:32:58.118 [C] [asm_amd64.s:509] C:/Go/src/runtime/asm_amd64.s:2337
+2019/03/21 09:32:58.118 [server.go:2846] [HTTP] http: response.WriteHeader on hijacked connection
+2019/03/21 09:32:58.118 [server.go:2846] [HTTP] http: response.Write on hijacked connection

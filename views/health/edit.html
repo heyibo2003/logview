@@ -1,0 +1,196 @@
+<script type=text/javascript src="/static/js/My97DatePicker/WdatePicker.js"></script>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="smaller lighter blue no-margin">添加服务信息</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" id="saveForm" role="form" action="/admin/health/update" method="post">
+                <input type="hidden" id="Id" name="Id" value="{{.Health.Id}}"/>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">服务名称：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Name" name="Name" required lay-verify="required" placeholder="服务名称" class="col-xs-10 col-sm-5"
+                               value="{{.Health.Name}}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">服务进程名称：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Processname" name="Processname" placeholder="服务进程名称" class="col-xs-10 col-sm-5"
+                               value="{{.Health.Processname}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">巡检类型：</label>
+                    <div class="col-sm-9">
+                        <input type="hidden" value="{{.Health.Inspection}}" id="InspectionHide">
+                        <select class="col-xs-10 col-sm-5" name="Inspection" id="Inspection" style="width: 175px;">
+                            <option value ="http">http</option>
+                            <option value ="tcp">tcp</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="InspectionUrl" style="display: none;">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">Url地址：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Url" name="Url" placeholder="Url地址" class="col-xs-10 col-sm-5"
+                               value="{{.Health.Url}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">服务端口：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Port" name="Port" placeholder="服务端口" class="col-xs-10 col-sm-5"
+                               value="{{.Health.Port}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">用户名：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="User" name="User" placeholder="用户名" class="col-xs-10 col-sm-5"
+                               value="{{.Health.User}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">密码：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Passwd" name="Passwd" placeholder="密码" class="col-xs-10 col-sm-5"
+                               value="{{.Health.Passwd}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">服务器IP：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Machine" name="Machine" placeholder="服务器IP" class="col-xs-10 col-sm-5"
+                               value="{{.Health.Machine}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">服务器端口：</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Hostport" name="Hostport" placeholder="服务器端口" class="col-xs-10 col-sm-5"
+                               value="{{.Health.Hostport}}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">部署环境：</label>
+                    <div class="col-sm-9">
+                        <input type="hidden" value="{{.Health.EnvId}}" id="EnvIdHide">
+                        <select class="col-xs-10 col-sm-5" name="EnvId" id="EnvId" style="width: 175px;">
+
+                        {{range.EList}}
+                            <option value="{{.Id}}" {{if .Envname}} selected="selected" {{end}}>{{.Envname}}</option>
+                        {{end}}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="name">项目组：</label>
+                    <div class="col-sm-9">
+                        <input type="hidden" value="{{.Health.PerjectId}}" id="PerjectIdHide">
+                        <select class="col-xs-10 col-sm-5" name="PerjectId" id="Perjectid" style="width: 120px;">
+                        {{range.PList}}
+                            <option value="{{.Id}}" {{if .Perject}} selected="selected" {{end}}>{{.Perject}}</option>
+                        {{end}}
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer" style="background-color: white">
+                    <button class="btn btn-sm btn-primary" type="button" onclick="return save();">
+                        <i class="ace-icon fa fa-check"></i>
+                        保存
+                    </button>
+                    <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        关闭
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+<script type="text/javascript">
+
+    jQuery(function ($) {
+        var Inspection =$('#InspectionHide').val()
+        $('#Inspection').val(Inspection);
+        var Perjectid = $('#PerjectIdHide').val();
+        $('#Perjectid').val(Perjectid)
+        var EnvId = $('#EnvIdHide').val();
+        $('#EnvId').val(EnvId);
+        if($('#Inspection').val() == 'http') {
+            $('#InspectionUrl').show()
+        }
+        $('#Inspection').change(function(){
+            var selectNmae = $(this).val();
+            console.log($(this).val())
+            if(selectNmae == 'http') {
+                $('#InspectionUrl').show()
+            } else {
+                $('#InspectionUrl').hide()
+            }
+        });
+        $('#saveForm').validate({
+            errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+                Name: {
+                    required: true,
+                },
+                Processname: {
+                    required: true,
+                },
+                Inspection: {
+                    required: true,
+                },
+                Port:{
+                    required: true,
+                },
+                User: {
+                    required: true,
+                },
+                Passwd: {
+                    required: true,
+                },
+                Machine: {
+                    required: true,
+                },
+                Hostport: {
+                    required: true,
+                },
+                EnvId: {
+                    required: true,
+                },
+                PerjectId: {
+                    required: true,
+                },
+
+            },
+            highlight: function (e) {
+                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            },
+            success: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+            }
+        });
+    });
+    //保存，之前进行校验
+    function save() {
+        if ($('#saveForm').valid()) {
+            $.post("/admin/health/update", $("#saveForm").serialize(),
+                    function (data) {
+                         window.location.reload();
+                    });
+        }
+
+    }
+</script>

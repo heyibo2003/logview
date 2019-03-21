@@ -60,5 +60,13 @@ func init() {
 	beego.Router("/admin/app/add", applicationController, "get:Add")
 	beego.Router("/admin/app/post", applicationController, "post:Post")
 	beego.Router("/admin/app/update", applicationController, "post:Update")
-
+	healthController :=&controllers.InspectionController{}
+	beego.Router("/admin/health/edit",healthController, "get:Edit")
+	beego.Router("/admin/health/delete", healthController, "post:Delete")
+	beego.Router("/admin/health/list", healthController, "get:List")
+	beego.Router("/admin/health/add", healthController, "get:Add")
+	beego.Router("/admin/health/post", healthController, "post:Post")
+	beego.Router("/admin/health/update", healthController, "post:Update")
+	beego.Router("/health", healthController, "get:Get")
+	beego.Router("/getHealth", healthController, "post:GetHealth")
 }

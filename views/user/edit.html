@@ -26,11 +26,10 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="name">项目组：</label>
                     <div class="col-sm-9">
-
+                        <input type="hidden" value="{{.User.Perjectid}}" id="PerjectIdHide">
                         <select class="col-xs-10 col-sm-5" name="Perjectid" id="Perjectid" style="width: 120px;">
-                            this.Data["tPerjectId"] ={{.User.Perjectid}}
                         {{range.List}}
-                            <option value="{{.Id}}" {{if compare  .Id $.tPerjectId  }} selected="selected" {{end}}>{{.Perject}}</option>
+                            <option value="{{.Id}}" {{if  .Id }} selected="selected" {{end}}>{{.Perject}}</option>
                         {{end}}
                         </select>
                     </div>
@@ -65,11 +64,9 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="name">性别：</label>
                     <div class="col-sm-9">
-
                         <input class="ace ace-checkbox-2" type="radio" name="Gender"
                                {{if eq .User.Gender 1 }}checked{{end}} value="1">
                         <span class="lbl">男</span>
-
                         <input class="ace ace-checkbox-2" type="radio" name="Gender"
                                {{if eq .User.Gender 0 }}checked{{end}} value="0">
                         <span class="lbl">女</span>
@@ -108,6 +105,8 @@
 <script type="text/javascript">
 
     jQuery(function ($) {
+        var Perjectid = $('#PerjectIdHide').val();
+        $('#Perjectid').val(Perjectid)
         $('#saveForm').validate({
             errorElement: 'div',
             errorClass: 'help-block',

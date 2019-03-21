@@ -74,3 +74,5 @@ func (c * Remote)GetSshClientByCMD(user string,pwd string,addr string,port int,c
     stdout :=string(Stdout)
 	return stdout, nil
 }
+
+

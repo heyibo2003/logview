@@ -42,12 +42,37 @@ func (this *Health) TableName() string {
 }
 
 //根据项目Id和环境Id查询
-func (c *PerjectHealth) GetHealthByPerjectIdAndEnvId(PerjectId int,EnvId int) (dataList []*PerjectHealth,err error ) {
+func (c *Health) GetHealthByPerjectIdAndEnvId(PerjectId int,EnvId int) (dataList []*Health,err error ) {
+	orm.Debug = true
+	o := orm.NewOrm()
+	o.Using("default")
+	var list []*Health
+	qs := o.QueryTable("health").Filter("PerjectId",PerjectId).Filter("EnvId",EnvId)
+	//查询数据
+	if _, err = qs.All(&list); err == nil {
+		for _, v := range list {
+			dataList = append(dataList, v)
+		}
+		logs.Info("dataList-name :", dataList)
+		return dataList, nil
+
+	}
+	logs.Info("dataList-name-2 :",dataList)
+	return dataList, err
+
+}
+
+/*
+ * 根据服务名称模糊查询
+ *@auth heyibo
+ *@date 2018-5-30
+ */
+func (c *Health) GetPerjectHealthListByName (Name string) (dataList []*PerjectHealth,err error ){
 	orm.Debug = true
 	o := orm.NewOrm()
 	o.Using("default")
 	var list []*PerjectHealth
-	qs,err:= o.Raw("SELECT health.`id`,health.`name`,health.`processname`,health.`inspection`,health.`url`,health.`port`,health.`user`,health.`passwd`,health.`machine`,health.`hostport`,perject.`perject`,env.`envname`,health.`Create_Time`,health.`Update_Time`FROM health INNER JOIN perject,env WHERE health.`Perject_Id`=perject.`id` AND health.`Env_Id`=env.`id` AND health.`Perject_Id`=? AND health.`Env_Id`=?").QueryRows(&list)
+	qs,err:= o.Raw("SELECT health.`id`,health.`name`,health.`processname`,health.`inspection`,health.`url`,health.`port`,health.`user`,health.`passwd`,health.`machine`,health.`hostport`,perject.`perject`,env.`envname`,health.`Create_Time`,health.`Update_Time`FROM health INNER JOIN perject,env WHERE health.`Perject_Id`=perject.`id` AND health.`Env_Id`=env.`id` AND health.`name`LIKE '%"+Name+"%'").QueryRows(&list)
 	//查询数据
 	//查询数据software.`port`
 	if  err == nil &&qs>0{
@@ -58,9 +83,7 @@ func (c *PerjectHealth) GetHealthByPerjectIdAndEnvId(PerjectId int,EnvId int) (d
 		return dataList, nil
 	}
 	return dataList, err
-
 }
-
 
 /*
  * 查询所有用户方法
@@ -68,20 +91,20 @@ func (c *PerjectHealth) GetHealthByPerjectIdAndEnvId(PerjectId int,EnvId int) (d
  *@date 2018-5-30
  */
 
-func (c *Health) GetAll() (dataList []*Health,err error ) {
+func (c *Health) GetAll() (dataList []*PerjectHealth,err error ) {
 	orm.Debug = true
 	o := orm.NewOrm()
 	o.Using("default")
-	var list []*Health
-	qs:= o.QueryTable("env")
+	var list []*PerjectHealth
+	result,err:= o.Raw("SELECT health.`id`,health.`name`,health.`processname`,health.`inspection`,health.`url`,health.`port`,health.`user`,health.`passwd`,health.`machine`,health.`hostport`,perject.`perject`,env.`envname`,health.`Create_Time`,health.`Update_Time`FROM health INNER JOIN perject,env WHERE health.`Perject_Id`=perject.`id` AND health.`Env_Id`=env.`id`").QueryRows(&list)
 	//查询数据
-	if _, err = qs.All(&list); err == nil {
+	if  err == nil && result>0{
 		for _, v := range list {
 			dataList = append(dataList, v)
 		}
 		return dataList, nil
 	}
-	return nil, err
+	return dataList, err
 }
 
 /*
@@ -110,6 +133,7 @@ func (c * Health) Update(Health *Health) (err error ) {
 	orm.Debug = true
 	o := orm.NewOrm()
 	o.Using("default")
+	fmt.Println("ss:",Health)
 	o.Update(Health)
 	return
 }
