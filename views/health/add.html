@@ -11,7 +11,7 @@
                 <div class="form-group">
                    <label class="col-sm-3 control-label no-padding-right" for="name">服务名称：</label>
                     <div class="col-sm-9">
-                        <input type="text" id="Name" name="name" required lay-verify="required" placeholder="服务名称" class="col-xs-10 col-sm-5"
+                        <input type="text" id="Name" name="ame" required lay-verify="required" placeholder="服务名称" class="col-xs-10 col-sm-5"
                            value=""/>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right" for="name">项目组：</label>
                     <div class="col-sm-9">
-                        <select class="col-xs-10 col-sm-5" name="Perjectid" id="Perjectid" style="width: 120px;">
+                        <select class="col-xs-10 col-sm-5" name="PerjectId" id="Perjectid" style="width: 120px;">
                           {{range.PList}}
                          <option value="{{.Id}}" {{if .Perject}} selected="selected" {{end}}>{{.Perject}}</option>
                           {{end}}

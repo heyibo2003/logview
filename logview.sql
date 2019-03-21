@@ -70,24 +70,27 @@ DROP TABLE IF EXISTS `health`;
 
 CREATE TABLE `health` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `processname` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `inspection` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `processname` varchar(100) DEFAULT NULL,
+  `inspection` varchar(50) DEFAULT NULL,
+  `url` varchar(255) DEFAULT 'null',
   `port` int(11) DEFAULT NULL,
-  `user` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `passwd` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user` varchar(100) DEFAULT NULL,
+  `passwd` varchar(100) DEFAULT NULL,
+  `machine` varchar(100) DEFAULT NULL,
   `hostport` int(11) DEFAULT NULL,
   `Env_Id` int(11) NOT NULL DEFAULT '0',
   `Perject_Id` int(11) NOT NULL DEFAULT '0',
   `Create_Time` datetime DEFAULT NULL,
   `Update_Time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `health` */
 
 LOCK TABLES `health` WRITE;
+
+insert  into `health`(`id`,`name`,`processname`,`inspection`,`url`,`port`,`user`,`passwd`,`machine`,`hostport`,`Env_Id`,`Perject_Id`,`Create_Time`,`Update_Time`) values (1,'redis','redis-03','tcp','',6379,'root','p@ss1234','10.108.6.90',22,1,1,NULL,'2019-03-08 09:05:05'),(2,'mysql','mysql','tcp','',3306,'root','p@ss1234','10.108.6.89',22,1,1,NULL,'2019-03-08 08:09:34'),(3,'mysql','mysql','tcp','',3306,'root','ahf6pahjee&ce2D','10.188.7.231',22,4,3,'2019-03-21 06:13:22','2019-03-21 06:13:22'),(4,'tomcat','app1','http','http://10.188.7.231/anjicc/login.htm',80,'root','ahf6pahjee&ce2D','10.188.7.231',22,4,3,'2019-03-21 06:32:13','2019-03-21 06:32:13'),(5,'mysql','mysql','tcp','',3306,'root','ahf6pahjee&ce2D','10.188.7.232',22,4,3,'2019-03-21 06:36:41','2019-03-21 06:36:41'),(6,'tomcat','app1','http','http://10.188.7.232/anjicc/login.htm',80,'root','ahf6pahjee&ce2D','10.188.7.232',22,4,3,'2019-03-21 06:38:09','2019-03-21 06:38:09');
 
 UNLOCK TABLES;
 
@@ -101,13 +104,13 @@ CREATE TABLE `perject` (
   `Create_Time` datetime DEFAULT NULL,
   `Update_Time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `perject` */
 
 LOCK TABLES `perject` WRITE;
 
-insert  into `perject`(`id`,`perject`,`Create_Time`,`Update_Time`) values (1,'wms',NULL,'2018-11-22 08:33:18'),(2,'wms-thailand',NULL,'2018-10-02 05:51:47');
+insert  into `perject`(`id`,`perject`,`Create_Time`,`Update_Time`) values (1,'wms',NULL,'2018-11-22 08:33:18'),(2,'wms-thailand',NULL,'2018-10-02 05:51:47'),(3,'crm1.0','2019-03-21 01:43:42','2019-03-21 01:43:42');
 
 UNLOCK TABLES;
 

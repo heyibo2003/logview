@@ -168,7 +168,7 @@ func (c *InspectionController) GetHealth()  {
 					Msg := "进程检查--------------------------------------------------------------------------------------------------------------------------------------------------------------------失败!\n"
 					LogsContent.WriteString(fmt.Sprintf("%s----------%s--------------------%s","服务器IP："+v.Machine+"",v.Name,Msg))
 				} else {
-					ProcessNub, _ := strconv.Atoi(process_name)
+					ProcessNub, _ := strconv.Atoi(strings.Replace(process_name, "\n", "", -1))
 					if ProcessNub > 0 {
 						Msg := "进程检查--------------------------------------------------------------------------------------------------------------------------------------------------------------------正常!\n"
 						LogsContent.WriteString(fmt.Sprintf("%s----------%s--------------------%s","服务器IP："+v.Machine+"",v.Name,Msg))
@@ -182,7 +182,7 @@ func (c *InspectionController) GetHealth()  {
 					Msg := "端口检查--------------------------------------------------------------------------------------------------------------------------------------------------------------------失败!\n"
 					LogsContent.WriteString(fmt.Sprintf("%s----------%s--------------------%s","服务器IP："+v.Machine+"",v.Name,Msg))
 				} else {
-					ProcessNub, _ := strconv.Atoi(application_port)
+					ProcessNub, _ := strconv.Atoi(strings.Replace(application_port, "\n", "", -1))
 					if ProcessNub > 0 {
 						Msg := "端口检查--------------------------------------------------------------------------------------------------------------------------------------------------------------------正常!\n"
 						LogsContent.WriteString(fmt.Sprintf("%s----------%s--------------------%s","服务器IP："+v.Machine+"",v.Name,Msg))
